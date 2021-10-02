@@ -19,4 +19,9 @@
         android:name="com.lemon.team.superhero.ui.fragment.details.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.lemon.team.superhero.ui.fragment.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>
