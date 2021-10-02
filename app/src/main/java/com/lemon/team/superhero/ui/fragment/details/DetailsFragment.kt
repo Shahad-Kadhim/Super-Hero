@@ -12,6 +12,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     FragmentDetailsBinding::inflate
 
     override fun setUp() {
+
     }
 
 }
