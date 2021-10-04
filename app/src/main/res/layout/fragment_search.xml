@@ -7,7 +7,8 @@
     tools:context=".ui.fragment.search.SearchFragment">
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textVi"
+        android:text="not found"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </FrameLayout>
