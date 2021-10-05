@@ -1,6 +1,5 @@
 package com.lemon.team.superhero.util
 
-import kotlinx.coroutines.flow.Flow
 
 sealed class State<out T> {
 
