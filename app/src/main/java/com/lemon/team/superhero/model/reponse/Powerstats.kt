@@ -1,9 +1,15 @@
-package com.lemon.team.superhero.model.data.superHeroResponse
+package com.lemon.team.superhero.model.reponse
 
 
 import com.google.gson.annotations.SerializedName
 
 data class Powerstats(
+    @SerializedName("response")
+    val response: String? = null,
+    @SerializedName("id")
+    val id: String? = null,
+    @SerializedName("name")
+    val name: String? = null,
     @SerializedName("combat")
     val combat: String? = null,
     @SerializedName("durability")

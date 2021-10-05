@@ -1,9 +1,15 @@
-package com.lemon.team.superhero.model.data.superHeroResponse
+package com.lemon.team.superhero.model.reponse
 
 
 import com.google.gson.annotations.SerializedName
 
 data class Biography(
+    @SerializedName("response")
+    val response: String? = null,
+    @SerializedName("id")
+    val id: String? = null,
+    @SerializedName("name")
+    val name: String? = null,
     @SerializedName("aliases")
     val aliases: List<String>? = null,
     @SerializedName("alignment")
