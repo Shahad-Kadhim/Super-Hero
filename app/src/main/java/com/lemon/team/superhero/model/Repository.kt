@@ -1,8 +1,7 @@
 package com.lemon.team.superhero.model
 
-
-import com.lemon.team.superhero.model.data.response.SearchSuperHeroResponse.SearchCharacterResponse
-import com.lemon.team.superhero.model.data.response.SuperHeroResponse
+import com.lemon.team.superhero.model.data.SearchSuperHeroResponse.SearchCharacterResponse
+import com.lemon.team.superhero.model.data.superHeroResponse.SuperHeroResponse
 import com.lemon.team.superhero.model.network.API
 import com.lemon.team.superhero.util.Constants.KEY_API
 import com.lemon.team.superhero.util.State
