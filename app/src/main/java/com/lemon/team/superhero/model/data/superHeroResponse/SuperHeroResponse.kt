@@ -1,4 +1,4 @@
-package com.lemon.team.superhero.model.data.response
+package com.lemon.team.superhero.model.data.superHeroResponse
 
 
 import com.google.gson.annotations.SerializedName

@@ -1,7 +1,7 @@
-package com.lemon.team.superhero.model.data.response.SearchSuperHeroResponse
+package com.lemon.team.superhero.model.data.SearchSuperHeroResponse
 
 import com.google.gson.annotations.SerializedName
-import com.lemon.team.superhero.model.data.response.SuperHeroResponse
+import com.lemon.team.superhero.model.data.superHeroResponse.SuperHeroResponse
 
 data class SearchCharacterResponse(
     @SerializedName("response")

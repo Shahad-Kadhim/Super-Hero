@@ -3,6 +3,7 @@ package com.lemon.team.superhero.ui.fragment.details
 import android.view.LayoutInflater
 import com.lemon.team.superhero.R
 import com.lemon.team.superhero.databinding.FragmentDetailsBinding
+import com.lemon.team.superhero.ui.fragment.base.BasePresenter
 import com.lemon.team.superhero.ui.fragment.base.BaseFragment
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
@@ -11,8 +12,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
     override val bindingInflater: (LayoutInflater) -> FragmentDetailsBinding =
     FragmentDetailsBinding::inflate
 
-    override fun setUp() {
+    override val presenter: BasePresenter
+        get() = TODO("Not yet implemented")
 
+    override fun setUp() {
     }
 
 }

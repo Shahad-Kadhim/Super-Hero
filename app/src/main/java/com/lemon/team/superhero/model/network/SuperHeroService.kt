@@ -1,7 +1,7 @@
 package com.lemon.team.superhero.model.network
 
-import com.lemon.team.superhero.model.data.response.SearchSuperHeroResponse.SearchCharacterResponse
-import com.lemon.team.superhero.model.data.response.SuperHeroResponse
+import com.lemon.team.superhero.model.data.SearchSuperHeroResponse.SearchCharacterResponse
+import com.lemon.team.superhero.model.data.superHeroResponse.SuperHeroResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
