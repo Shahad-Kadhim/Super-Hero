@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import kotlinx.coroutines.cancel
 
 abstract class BaseFragment<VB : ViewBinding,P:BasePresenter> : Fragment() {
 
@@ -37,6 +38,11 @@ abstract class BaseFragment<VB : ViewBinding,P:BasePresenter> : Fragment() {
     ) :View?{
         _presenter = getPresenter
         return bindingInflater(inflater).apply { _binding = this }.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _presenter.customScope.cancel()
     }
 
     abstract fun setUp()
