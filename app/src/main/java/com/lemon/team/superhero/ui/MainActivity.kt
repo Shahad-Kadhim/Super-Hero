@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.lemon.team.superhero.databinding.ActivityMainBinding
-import com.lemon.team.superhero.ui.fragment.search.SearchFragment
+import com.lemon.team.superhero.ui.fragment.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        addFragment(SearchFragment())
+        addFragment(HomeFragment())
     }
 
     private fun addFragment(fragment: Fragment) {
