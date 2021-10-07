@@ -16,3 +16,13 @@ fun View.hide(){
 fun View.show(){
     this.visibility=View.VISIBLE
 }
+
+
+fun EditText.onClickSearch(action : (String) -> Unit){
+    this.setOnEditorActionListener { view, _, _ ->
+        if(view.text.isNotBlank()){
+            action(view.text.toString())
+        }
+        return@setOnEditorActionListener false
+    }
+}

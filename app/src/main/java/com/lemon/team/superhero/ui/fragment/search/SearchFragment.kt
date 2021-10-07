@@ -10,6 +10,7 @@ import com.lemon.team.superhero.ui.IView
 import com.lemon.team.superhero.ui.fragment.SuperHeroInteractionListener
 import com.lemon.team.superhero.ui.fragment.base.BaseFragment
 import com.lemon.team.superhero.util.hide
+import com.lemon.team.superhero.util.onClickSearch
 import com.lemon.team.superhero.util.show
 
 
@@ -32,12 +33,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),IVi
     }
 
     override fun callbacks() {
-        binding?.searchField?.setOnEditorActionListener { view, _, _ ->
-            if(view.text.isNotBlank()){
-                search(view.text.toString())
-                return@setOnEditorActionListener  true
-            }
-            return@setOnEditorActionListener false
+        binding?.searchField?.onClickSearch {
+            search(it)
         }
     }
 

@@ -5,6 +5,7 @@ import com.lemon.team.superhero.databinding.FragmentHomeBinding
 import com.lemon.team.superhero.ui.fragment.base.BaseFragment
 import com.lemon.team.superhero.ui.fragment.base.BasePresenter
 import com.lemon.team.superhero.util.goToFragment
+import com.lemon.team.superhero.util.onClickSearch
 
 class HomeFragment:BaseFragment<FragmentHomeBinding,HomePresenter>() {
     override val LOG_TAG: String="HOME_FRAGMENT"
@@ -17,14 +18,10 @@ class HomeFragment:BaseFragment<FragmentHomeBinding,HomePresenter>() {
     }
 
     override fun callbacks() {
-        binding?.searchField?.setOnEditorActionListener { view, _, _ ->
-            if(view.text.isNotBlank()){
-                view.goToFragment(
-                    HomeFragmentDirections.actionHomeFragmentToSearchFragment(view.text.toString())
-                )
-                return@setOnEditorActionListener  true
-            }
-            return@setOnEditorActionListener false
+        binding?.searchField?.onClickSearch {
+            binding?.searchField?.goToFragment(
+                HomeFragmentDirections.actionHomeFragmentToSearchFragment(it)
+            )
         }
     }
 
