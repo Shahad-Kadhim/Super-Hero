@@ -31,11 +31,15 @@ class HomeRecyclerAdapter(items:List<SuperHeroInfoResponse>,  listener: SuperHer
         val binding=ItemHomeSuperHeroBinding.bind(view)
     }
 
-    fun bindItem(superHero:SuperHeroInfoResponse,holder:ItemViewHolder){
+    private fun bindItem(superHero:SuperHeroInfoResponse,holder:ItemViewHolder){
         holder.binding.apply {
             name.text=superHero.name
             Glide.with(image).load(superHero.image?.url).into(image)
-            root.setOnClickListener { listener.onClickItem(superHero) }
+            root.setOnClickListener {
+                superHero.id?.let { id ->
+                    listener.onClickItem(id)
+                }
+            }
         }
 
     }

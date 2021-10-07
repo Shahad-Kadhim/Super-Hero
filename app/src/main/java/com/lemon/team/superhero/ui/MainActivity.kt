@@ -14,13 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        addFragment(HomeFragment())
     }
 
-    private fun addFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(
-            binding.fragmentContainer.id,
-            fragment
-        ).commit()
-    }
 }

@@ -36,7 +36,11 @@ class SearchRecyclerAdapter(items:List<SuperHeroInfoResponse>, listener: SuperHe
             characterName.text=superHero.name
             actor.text=superHero.biography?.fullName
             Glide.with(image).load(superHero.image?.url).into(image)
-            root.setOnClickListener { listener.onClickItem(superHero) }
+            root.setOnClickListener {
+                superHero.id?.let { id ->
+                    listener.onClickItem(id)
+                }
+            }
         }
 
     }
