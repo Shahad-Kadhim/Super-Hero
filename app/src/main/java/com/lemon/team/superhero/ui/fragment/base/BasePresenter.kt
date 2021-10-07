@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 abstract class BasePresenter {
 
-    val customScope= CoroutineScope(Dispatchers.Default)
+    val customScope= CoroutineScope(Dispatchers.Main)
 
     fun <T> handleRequest(
         response: Flow<State<T>>,
