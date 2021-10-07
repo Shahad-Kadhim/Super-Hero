@@ -26,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="#478859"
-        tools:fontFamily="sans-serif-condensed"
+        tools:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="16sp"
