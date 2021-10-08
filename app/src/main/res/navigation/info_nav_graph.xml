@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/info_nav_graph"
+    app:startDestination="@id/relativesFragment">
+
+    <fragment
+        android:id="@+id/relativesFragment"
+        android:name="com.lemon.team.superhero.ui.fragment.information.relarives.RelativesFragment"
+        android:label="RelativesFragment"
+        tools:layout="@layout/fragment_relatives">
+        <action
+            android:id="@+id/action_relativesFragment_to_groupAffiliationFragment"
+            app:destination="@id/groupAffiliationFragment"
+            app:popUpTo="@id/relativesFragment" />
+        <argument
+            android:name="superHeroId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/aliasesFragment"
+        android:name="com.lemon.team.superhero.ui.fragment.information.aliases.AliasesFragment"
+        android:label="AliasesFragment"
+        tools:layout="@layout/fragment_aliases">
+        <argument
+            android:name="superHeroId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/appearanceFragment"
+        android:name="com.lemon.team.superhero.ui.fragment.information.appearance.AppearanceFragment"
+        android:label="AppearanceFragment"
+        tools:layout="@layout/fragment_appearance">
+        <action
+            android:id="@+id/action_appearanceFragment_to_aliasesFragment"
+            app:destination="@id/aliasesFragment"
+            app:popUpTo="@id/appearanceFragment" />
+        <argument
+            android:name="superHeroId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupAffiliationFragment"
+        android:name="com.lemon.team.superhero.ui.fragment.information.groupAffiliation.GroupAffiliationFragment"
+        android:label="GroupAffiliationFragment"
+        tools:layout="@layout/fragment_group_affiliation">
+        <action
+            android:id="@+id/action_groupAffiliationFragment_to_appearanceFragment"
+            app:destination="@id/appearanceFragment"
+            app:popUpTo="@id/groupAffiliationFragment" />
+        <argument
+            android:name="superHeroId"
+            app:argType="string" />
+    </fragment>
+</navigation>

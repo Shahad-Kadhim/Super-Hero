@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="sub_text_color">#767676</color>
     <color name="warning_text_color">#BBBBBB</color>
+    <color name="green">#478859</color>
 </resources>
