@@ -11,7 +11,7 @@ import com.lemon.team.superhero.ui.fragment.SuperHeroInteractionListener
 import com.lemon.team.superhero.ui.fragment.base.BaseRecyclerAdapter
 
 class SearchRecyclerAdapter(items:List<SuperHeroInfoResponse>, listener: SuperHeroInteractionListener)
-    :BaseRecyclerAdapter<SuperHeroInfoResponse>(items,listener){
+    :BaseRecyclerAdapter<SuperHeroInfoResponse,SuperHeroInteractionListener>(items,listener){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
