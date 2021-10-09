@@ -1,20 +1,17 @@
 package com.lemon.team.superhero.ui.fragment.details
 
-import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.lemon.team.superhero.R
 import com.lemon.team.superhero.databinding.FragmentDetailsBinding
-import com.lemon.team.superhero.model.reponse.Biography
 import com.lemon.team.superhero.model.reponse.Powerstats
-import com.lemon.team.superhero.ui.IView
+import com.lemon.team.superhero.model.reponse.SuperHeroInfoResponse
 import com.lemon.team.superhero.ui.fragment.base.BasePresenter
 import com.lemon.team.superhero.ui.fragment.base.BaseFragment
-import com.lemon.team.superhero.ui.fragment.information.relarives.RelativesFragmentArgs
+import com.lemon.team.superhero.util.State
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),IDetailsView {
     val args:DetailsFragmentArgs by navArgs()
@@ -23,80 +20,69 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
         FragmentDetailsBinding::inflate
     override val getPresenter: BasePresenter =DetailsPresenter(this)
 
+    override fun setUp() {
+        presenter?.apply {
+            getSuperHeroInfo(args.superHeroId)
+        }
+    }
+
+
     override fun callbacks() {
 
     }
 
-    override fun setUp() {
-        presenter?.apply {
-            getBiography(args.superHeroId)
-            getPowerStats(args.superHeroId)
-        }
-//        val navHostFragment =
-//            requireActivity().supportFragmentManager.findFragmentById(R.id.info_host) as NavHostFragment
-//        val navController = navHostFragment.navController
-//        val navGraph = navController.navInflater.inflate(R.navigation.info_nav_graph)
-//        navGraph.startDestination = R.id.relativesFragment
-//        navController.graph = navGraph
-//        binding?.infoHost?.setupWithNavController(navController)
 
-
-//        binding?.infoHost?.findNavController()?.setGraph(
-//            R.navigation.info_nav_graph,
-//            RelativesFragmentArgs("your values").toBundle()
-//        )
-
-        //    java.lang.NullPointerException: null cannot be cast to non-null type androidx.navigation.fragment.NavHostFragment
-//        (requireActivity().supportFragmentManager.findFragmentById(R.id.info_host) as NavHostFragment)
-//            .navController.setGraph(
-//                R.navigation.info_nav_graph,
-//                RelativesFragmentArgs("your values").toBundle()
-//            )
-
-        //work
-        requireActivity().findNavController(R.id.info_host)
-            .setGraph(
-                R.navigation.info_nav_graph,
-                RelativesFragmentArgs("your values").toBundle()
-            )
-
-
-    }
-
-    override fun onSuccessBiography(data: Biography?) {
-        binding?.apply {
-            data?.let {
-                superHeroName.text=it.name
-                superHeroActor.text=it.fullName
-            }
+    override fun onResponseSuperHeroInfo(state: State<SuperHeroInfoResponse?>) {
+        when(state){
+            is State.Error -> onError(state.message)
+            State.Loading -> onLoading()
+            is State.Success -> onSuccess(state.data)
         }
     }
 
-    override fun onSuccessPowerState(data: Powerstats?) {
-        binding?.apply {
-            data?.let {
-                it.speed?.toIntOrNull()?.let { speed ->
-                    speedProgress.progress=speed
-                }
-                it.durability?.toIntOrNull()?.let { durability ->
-                    durabilityProgress.progress=durability
-                }
-                it.power?.toIntOrNull()?.let { power ->
-                    powerProgress.progress=power
-                }
-                it.strength?.toIntOrNull()?.let { strength ->
-                    strengthProgress.progress=strength
-                }
-            }
-        }
+    private fun onError(message: String) {
+        Log.i("TAG","ERROR $message")
     }
 
-    override fun onError(message: String) {
-        Log.i("TAG","ERROR")
-    }
-
-    override fun onLoading() {
+    private fun onLoading() {
         Log.i("TAG","Loading")
     }
+
+    private fun onSuccess(data: SuperHeroInfoResponse?) {
+        data?.let {
+            bindLayout(it)
+        }
+    }
+
+    private fun bindLayout(data:SuperHeroInfoResponse){
+        binding?.apply {
+            superHeroName.text=data.name
+            superHeroActor.text=data.biography?.fullName
+            Glide.with(image).load(data.image?.url).centerCrop().into(image)
+//            eyeColor.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.purple_500))
+            data.powerstats?.let { powerState ->
+                bindPowerState(powerState)
+            }
+
+        }
+    }
+
+    private fun bindPowerState(powerState:Powerstats){
+        binding?.apply {
+            powerState.speed?.toIntOrNull()?.let { speed ->
+                speedProgress.progress=speed
+            }
+            powerState.durability?.toIntOrNull()?.let { durability ->
+                durabilityProgress.progress=durability
+            }
+            powerState.power?.toIntOrNull()?.let { power ->
+                powerProgress.progress=power
+            }
+            powerState.strength?.toIntOrNull()?.let { strength ->
+                strengthProgress.progress=strength
+            }
+        }
+    }
+
 
 }

@@ -1,11 +1,8 @@
 package com.lemon.team.superhero.ui.fragment.details
 
-import com.lemon.team.superhero.model.reponse.Biography
-import com.lemon.team.superhero.model.reponse.Powerstats
+import com.lemon.team.superhero.model.reponse.SuperHeroInfoResponse
+import com.lemon.team.superhero.util.State
 
 interface IDetailsView {
-    fun onSuccessBiography(data:Biography?)
-    fun onSuccessPowerState(data:Powerstats?)
-    fun onError(message:String)
-    fun onLoading()
+    fun onResponseSuperHeroInfo(state:State<SuperHeroInfoResponse?>)
 }

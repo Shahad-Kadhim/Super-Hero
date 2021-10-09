@@ -10,7 +10,7 @@ import retrofit2.Response
 
 object Repository {
 
-    fun getSuperHeroInfo(characterId: Int)
+    fun getSuperHeroInfo(characterId: String)
             : Flow<State<SuperHeroInfoResponse?>> =
         wrapWithFlow { API.apiService.getSuperHeroInfo(KEY_API, characterId) }
 

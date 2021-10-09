@@ -10,7 +10,7 @@ interface SuperHeroService {
     @GET("api/{access-token}/{character-id}")
     suspend fun getSuperHeroInfo(
         @Path("access-token") apiKey: String,
-        @Path("character-id") characterId: Int,
+        @Path("character-id") characterId: String,
     ): Response<SuperHeroInfoResponse>
 
     @GET("api/{access-token}/{character-id}/powerstats")
