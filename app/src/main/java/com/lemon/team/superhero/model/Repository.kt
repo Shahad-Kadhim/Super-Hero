@@ -18,11 +18,11 @@ object Repository {
             : Flow<State<SuperHeroSearchResultResponse?>> =
         wrapWithFlow { API.apiService.getSuperHeroSearchResult(KEY_API, characterName) }
 
-    fun getSuperHeroPowerStats(characterId: Int)
+    fun getSuperHeroPowerStats(characterId: String)
             : Flow<State<Powerstats?>> =
         wrapWithFlow { API.apiService.getSuperHeroPowerstats(KEY_API, characterId) }
 
-    fun getSuperHeroBiography(characterId: Int)
+    fun getSuperHeroBiography(characterId: String)
             : Flow<State<Biography?>> =
         wrapWithFlow { API.apiService.getSuperHeroBiography(KEY_API, characterId) }
 

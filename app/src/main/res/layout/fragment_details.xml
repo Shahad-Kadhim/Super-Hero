@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent" >
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/super_hero_name"
             style="@style/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,14 +38,14 @@
             tools:text="Batman" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/super_hero_actor"
             style="@style/subText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/super_hero_name"
+            app:layout_constraintTop_toBottomOf="@+id/super_hero_name"
             tools:text="(braham Sapien)" />
 
         <com.google.android.material.card.MaterialCardView
@@ -58,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
+            app:layout_constraintTop_toBottomOf="@+id/super_hero_actor">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/info_host"
@@ -75,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:text="Eyes color"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/materialCardView"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
@@ -83,22 +84,17 @@
             android:layout_height="20dp"
             android:layout_marginStart="16dp"
             android:src="@color/black"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="@+id/textView4"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-        <ProgressBar
+        <androidx.appcompat.widget.AppCompatSeekBar
             android:id="@+id/speedProgress"
-            style="?android:attr/progressBarStyleLarge"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
-            android:indeterminate="false"
-            android:max="100"
-            android:progress="10"
-            android:indeterminateTint="@color/green"
-            android:progressBackgroundTintMode="add"
+            android:thumb="@drawable/circle"
             app:layout_constraintBottom_toTopOf="@+id/text1"
             app:layout_constraintEnd_toStartOf="@id/powerProgress"
             app:layout_constraintStart_toStartOf="parent"

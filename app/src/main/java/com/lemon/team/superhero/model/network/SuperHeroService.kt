@@ -16,13 +16,13 @@ interface SuperHeroService {
     @GET("api/{access-token}/{character-id}/powerstats")
     suspend fun getSuperHeroPowerstats(
         @Path("access-token") apiKey: String,
-        @Path("character-id") characterId: Int,
+        @Path("character-id") characterId: String,
     ): Response<Powerstats>
 
     @GET("api/{access-token}/{character-id}/biography")
     suspend fun getSuperHeroBiography(
         @Path("access-token") apiKey: String,
-        @Path("character-id") characterId: Int,
+        @Path("character-id") characterId: String,
     ): Response<Biography>
 
     @GET("api/{access-token}/{character-id}/appearance")
