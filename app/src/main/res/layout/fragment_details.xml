@@ -67,8 +67,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:visibility="invisible"
-            android:text="Eyes color"
+            android:visibility="visible"
+            android:text="Poewer State"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/lora_variablefont_wght_bold"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/recycle_info"
             app:layout_constraintTop_toBottomOf="@+id/recycle_info" />
 
@@ -95,7 +99,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/text1"
             app:layout_constraintEnd_toStartOf="@id/powerProgress"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/recycle_info"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
@@ -172,9 +176,8 @@
             android:indeterminate="false"
             android:background="@drawable/circle"
             android:progressDrawable="@drawable/circle_progress_bar"
-
             app:layout_constraintBottom_toTopOf="@+id/text4"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/recycle_info"
             app:layout_constraintStart_toEndOf="@+id/strengthProgress"
             app:layout_constraintTop_toTopOf="@+id/speedProgress"/>
 
