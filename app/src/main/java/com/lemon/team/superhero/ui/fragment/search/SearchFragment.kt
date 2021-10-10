@@ -20,13 +20,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
     override val getPresenter=SearchPresenter(this)
 
     private fun search(query:String){
-        presenter?.searchByName(query)
+        presenter.searchByName(query)
     }
 
     override fun setUp() {
         setupTransition()
         args.query.also {
-            binding?.searchField?.setText(it)
+            binding.searchField.setText(it)
             search(it)
         }
     }
@@ -37,7 +37,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
 
 
     override fun callbacks() {
-        binding?.apply {
+        binding.apply {
             searchField.onClickSearch { query->
                 search(query)
             }
@@ -58,7 +58,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
 
     private fun onSuccess(data: SuperHeroSearchResultResponse?) {
         Log.i("TAG","SUCCESS")
-        binding?.apply {
+        binding.apply {
             data?.results?.let {
                 recycler.apply {
                     adapter = SearchRecyclerAdapter(it,this@SearchFragment)
@@ -72,7 +72,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
 
     private fun onError(message: String) {
         Log.i("TAG","ERROR $message")
-        binding?.apply {
+        binding.apply {
             error.show()
             loading.hide()
             recycler.hide()
@@ -81,7 +81,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
 
     private fun onLoading() {
         Log.i("TAG","Loading")
-        binding?.apply {
+        binding.apply {
             loading.show()
             error.hide()
             recycler.hide()
@@ -89,7 +89,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
     }
 
     override fun onClickItem(superHeroId: String) {
-        binding?.root?.goToFragment(SearchFragmentDirections.actionSearchFragmentToDetailsFragment(superHeroId))
+        binding.root.goToFragment(SearchFragmentDirections.actionSearchFragmentToDetailsFragment(superHeroId))
     }
 
 }

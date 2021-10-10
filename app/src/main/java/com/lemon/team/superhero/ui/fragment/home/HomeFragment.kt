@@ -19,10 +19,10 @@ class HomeFragment:BaseFragment<FragmentHomeBinding,HomePresenter>() {
     }
 
     override fun callbacks() {
-        binding?.searchField?.onClickSearch {
-            binding?.searchField?.goToFragmentWithTransition(
+        binding.searchField.onClickSearch {
+            binding.searchField.goToFragmentWithTransition(
                 HomeFragmentDirections.actionHomeFragmentToSearchFragment(it),
-                FragmentNavigatorExtras(binding!!.searchField to "search")
+                FragmentNavigatorExtras(binding.searchField to "search")
             )
         }
     }

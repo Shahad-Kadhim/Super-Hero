@@ -2,6 +2,7 @@ package com.lemon.team.superhero.ui.fragment.details
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -10,20 +11,19 @@ import com.lemon.team.superhero.model.domain.Info
 import com.lemon.team.superhero.model.domain.Type
 import com.lemon.team.superhero.model.reponse.Powerstats
 import com.lemon.team.superhero.model.reponse.SuperHeroInfoResponse
-import com.lemon.team.superhero.u.InfoRecyclerAdapter
 import com.lemon.team.superhero.ui.fragment.base.BasePresenter
 import com.lemon.team.superhero.ui.fragment.base.BaseFragment
 import com.lemon.team.superhero.util.State
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),IDetailsView ,InfoInteractionListener{
-    val args:DetailsFragmentArgs by navArgs()
+    private val args:DetailsFragmentArgs by navArgs()
     override val LOG_TAG: String = "DETAILS_FRAGMENT"
     override val bindingInflater: (LayoutInflater) -> FragmentDetailsBinding =
         FragmentDetailsBinding::inflate
     override val getPresenter: BasePresenter =DetailsPresenter(this)
 
     override fun setUp() {
-        presenter?.apply {
+        presenter.apply {
             getSuperHeroInfo(args.superHeroId)
         }
     }
@@ -43,7 +43,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
     }
 
     private fun onError(message: String) {
-        Log.i("TAG","ERROR $message")
+        Toast.makeText(requireContext(),"ERROR $message",Toast.LENGTH_SHORT).show()
     }
 
     private fun onLoading() {
@@ -57,11 +57,10 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
     }
 
     private fun bindLayout(data:SuperHeroInfoResponse){
-        binding?.apply {
+        binding.apply {
             superHeroName.text=data.name
             superHeroActor.text=data.biography?.fullName
             Glide.with(image).load(data.image?.url).centerCrop().into(image)
-//            eyeColor.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.purple_500))
             data.powerstats?.let { powerState ->
                 bindPowerState(powerState)
             }
@@ -70,7 +69,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
     }
 
     private fun bindPowerState(powerState:Powerstats){
-        binding?.apply {
+        binding.apply {
             powerState.speed?.toIntOrNull()?.let { speed ->
                 speedProgress.progress=speed
             }
@@ -88,7 +87,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
 
 
     private fun bindInfoRecycler(info:List<Info<Any>>) {
-        binding?.recycleInfo?.apply {
+        binding.recycleInfo.apply {
             layoutManager = getUnScrolledLayoutManger()
             adapter= InfoRecyclerAdapter(info,this@DetailsFragment)
         }
@@ -112,12 +111,12 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
         ) as List<Info<Any>>
 
 
-    override fun onClickNext(postion:Int) {
-        binding?.recycleInfo?.scrollToPosition(postion+1)
+    override fun onClickNext(position:Int) {
+        binding.recycleInfo.scrollToPosition(position+1)
     }
 
-    override fun onClickPrevious(postion:Int) {
-        binding?.recycleInfo?.scrollToPosition(postion-1)
+    override fun onClickPrevious(position:Int) {
+        binding.recycleInfo.scrollToPosition(position-1)
     }
 
 

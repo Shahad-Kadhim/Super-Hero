@@ -2,9 +2,7 @@ package com.lemon.team.superhero.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import com.lemon.team.superhero.databinding.ActivityMainBinding
-import com.lemon.team.superhero.ui.fragment.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 

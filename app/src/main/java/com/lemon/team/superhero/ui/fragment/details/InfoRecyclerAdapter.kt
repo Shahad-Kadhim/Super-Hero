@@ -1,6 +1,4 @@
-package com.lemon.team.superhero.u
-
-import com.lemon.team.superhero.ui.fragment.details.InfoInteractionListener
+package com.lemon.team.superhero.ui.fragment.details
 
 
 import android.view.LayoutInflater
@@ -43,7 +41,6 @@ class InfoRecyclerAdapter(items:List<Info<Any>>, listener:InfoInteractionListene
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        position
         when(holder){
             is AppearanceViewHolder ->{
                 bindAppearanceItem(holder,position)

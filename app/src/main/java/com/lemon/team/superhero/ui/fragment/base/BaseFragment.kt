@@ -13,13 +13,13 @@ abstract class BaseFragment<VB : ViewBinding,P:BasePresenter> : Fragment() {
     abstract val LOG_TAG: String
 
     private lateinit var _binding: ViewBinding
-    var binding: VB?
-        get() = _binding as VB?
+    var binding: VB
+        get() = _binding as VB
         set(value) = TODO()
 
     private lateinit var _presenter: BasePresenter
-        var presenter: P?
-            get() = _presenter as P?
+        var presenter: P
+            get() = _presenter as P
             set(value) = TODO()
 
     abstract val getPresenter :BasePresenter
