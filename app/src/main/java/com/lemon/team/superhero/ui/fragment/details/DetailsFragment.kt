@@ -2,18 +2,20 @@ package com.lemon.team.superhero.ui.fragment.details
 
 import android.util.Log
 import android.view.LayoutInflater
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.lemon.team.superhero.R
 import com.lemon.team.superhero.databinding.FragmentDetailsBinding
+import com.lemon.team.superhero.model.domain.Info
+import com.lemon.team.superhero.model.domain.Type
 import com.lemon.team.superhero.model.reponse.Powerstats
 import com.lemon.team.superhero.model.reponse.SuperHeroInfoResponse
+import com.lemon.team.superhero.u.InfoRecyclerAdapter
 import com.lemon.team.superhero.ui.fragment.base.BasePresenter
 import com.lemon.team.superhero.ui.fragment.base.BaseFragment
 import com.lemon.team.superhero.util.State
 
-class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),IDetailsView {
+class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),IDetailsView ,InfoInteractionListener{
     val args:DetailsFragmentArgs by navArgs()
     override val LOG_TAG: String = "DETAILS_FRAGMENT"
     override val bindingInflater: (LayoutInflater) -> FragmentDetailsBinding =
@@ -63,7 +65,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
             data.powerstats?.let { powerState ->
                 bindPowerState(powerState)
             }
-
+            bindInfoRecycler(getInfoList(data))
         }
     }
 
@@ -82,6 +84,40 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
                 strengthProgress.progress=strength
             }
         }
+    }
+
+
+    private fun bindInfoRecycler(info:List<Info<Any>>) {
+        binding?.recycleInfo?.apply {
+            layoutManager = getUnScrolledLayoutManger()
+            adapter= InfoRecyclerAdapter(info,this@DetailsFragment)
+        }
+    }
+
+    private fun getUnScrolledLayoutManger() =
+        object: LinearLayoutManager(requireContext(),HORIZONTAL,false){
+            override fun canScrollHorizontally() =
+                false
+        }
+
+    private fun getInfoList(data: SuperHeroInfoResponse) =
+        listOf(
+            Info(data.appearance, Type.APPEARANCE),
+            Info(data.connections?.relatives,Type.Relatives),
+            Info(data.connections?.groupAffiliation,Type.GroupAffiliation),
+            Info(listOf(
+                data.biography?.aliases.toString(),
+                data.biography?.placeOfBirth
+            ),Type.Aliases)
+        ) as List<Info<Any>>
+
+
+    override fun onClickNext(postion:Int) {
+        binding?.recycleInfo?.scrollToPosition(postion+1)
+    }
+
+    override fun onClickPrevious(postion:Int) {
+        binding?.recycleInfo?.scrollToPosition(postion-1)
     }
 
 

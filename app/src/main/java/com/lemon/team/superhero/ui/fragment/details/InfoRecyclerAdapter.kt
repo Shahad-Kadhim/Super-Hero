@@ -1,4 +1,7 @@
-package com.lemon.team.superhero.ui.fragment.details
+package com.lemon.team.superhero.u
+
+import com.lemon.team.superhero.ui.fragment.details.InfoInteractionListener
+
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +14,7 @@ import com.lemon.team.superhero.model.reponse.Appearance
 import com.lemon.team.superhero.ui.fragment.base.BaseRecyclerAdapter
 
 class InfoRecyclerAdapter(items:List<Info<Any>>, listener:InfoInteractionListener)
-    : BaseRecyclerAdapter<Info<Any>,InfoInteractionListener>(items,listener){
+    : BaseRecyclerAdapter<Info<Any>, InfoInteractionListener>(items,listener){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
        return when(viewType){
@@ -57,27 +60,31 @@ class InfoRecyclerAdapter(items:List<Info<Any>>, listener:InfoInteractionListene
     private fun bindAppearanceItem(holder: AppearanceViewHolder, position: Int) {
         val currentItem=getItems()[position] as Info<Appearance>
         holder.binding.apply {
-            //TODO
+            gender.text=currentItem.info.gender
+            race.text=currentItem.info.race
+            height.text= currentItem.info.height?.get(1) ?:""
+            weight.text=currentItem.info.weight?.get(1) ?:""
+            nextButton.setOnClickListener { listener.onClickNext(position) }
         }
     }
 
     private fun bindAliasesItem(holder: AliasesViewHolder, position: Int) {
         val currentItem=getItems()[position] as Info<List<String?>>
         holder.binding.apply {
-            //TODO
+            aliases.text=currentItem.info[0]
+            placeOfBirth.text=currentItem.info[1]
+            previousButton.setOnClickListener { listener.onClickPrevious(position) }
         }
     }
 
     private fun bindConnectionsItem(holder: ConnectionsViewHolder, position: Int) {
         val currentItem=getItems()[position] as Info<String?>
         holder.binding.apply {
-            if(currentItem.type==Type.GroupAffiliation){
-                //TODO
-            }
-            else{
-                //TODO
-            }
-
+            detail.text=currentItem.info
+            this.textView.text = if(currentItem.type==Type.GroupAffiliation)
+                "Group Affiliation" else "Relatives"
+            nextButton.setOnClickListener { listener.onClickNext(position) }
+            previousButton.setOnClickListener { listener.onClickPrevious(position) }
         }
     }
 

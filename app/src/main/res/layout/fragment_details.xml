@@ -48,35 +48,29 @@
             app:layout_constraintTop_toBottomOf="@+id/super_hero_name"
             tools:text="(braham Sapien)" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/super_hero_actor">
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/info_host"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_info"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                app:defaultNavHost="true"/>
-
-        </com.google.android.material.card.MaterialCardView>
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_connections"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/super_hero_actor"/>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:visibility="invisible"
             android:text="Eyes color"
-            app:layout_constraintStart_toStartOf="@+id/materialCardView"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+            app:layout_constraintStart_toStartOf="@+id/recycle_info"
+            app:layout_constraintTop_toBottomOf="@+id/recycle_info" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/eye_color"
@@ -84,6 +78,7 @@
             android:layout_height="20dp"
             android:layout_marginStart="16dp"
             android:src="@color/black"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="@+id/textView4"
