@@ -28,6 +28,7 @@
     <EditText
         android:id="@+id/search_field"
         style="@style/search"
+        android:transitionName="search"
         android:background="@drawable/search_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

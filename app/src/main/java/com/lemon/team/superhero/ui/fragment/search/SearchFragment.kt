@@ -1,5 +1,6 @@
 package com.lemon.team.superhero.ui.fragment.search
 
+import android.transition.TransitionInflater
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.navigation.findNavController
@@ -23,11 +24,17 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
     }
 
     override fun setUp() {
+        setupTransition()
         args.query.also {
             binding?.searchField?.setText(it)
             search(it)
         }
     }
+
+    private fun setupTransition() {
+        sharedElementEnterTransition=TransitionInflater.from(activity).inflateTransition(android.R.transition.move)
+    }
+
 
     override fun callbacks() {
         binding?.apply {
@@ -39,6 +46,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
             }
         }
     }
+
 
     override fun  onResponseSearchingResult(state: State<SuperHeroSearchResultResponse?>) {
         when(state){
@@ -63,7 +71,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
     }
 
     private fun onError(message: String) {
-        Log.i("TAG","ERROR")
+        Log.i("TAG","ERROR $message")
         binding?.apply {
             error.show()
             loading.hide()

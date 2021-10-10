@@ -22,7 +22,8 @@
         android:background="@drawable/search_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/back_btn"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:transitionName="search"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"

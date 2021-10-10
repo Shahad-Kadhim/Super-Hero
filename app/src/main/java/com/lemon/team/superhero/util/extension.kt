@@ -4,9 +4,14 @@ import android.view.View
 import android.widget.EditText
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigator
 
 fun View.goToFragment(navDir: NavDirections) {
     Navigation.findNavController(this).navigate(navDir)
+}
+
+fun View.goToFragmentWithTransition(navDir: NavDirections,extra:FragmentNavigator.Extras) {
+    Navigation.findNavController(this).navigate(navDir,extra)
 }
 
 fun View.hide(){

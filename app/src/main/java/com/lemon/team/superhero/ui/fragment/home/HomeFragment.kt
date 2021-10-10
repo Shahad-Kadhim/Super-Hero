@@ -1,10 +1,11 @@
 package com.lemon.team.superhero.ui.fragment.home
 
 import android.view.LayoutInflater
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.lemon.team.superhero.databinding.FragmentHomeBinding
 import com.lemon.team.superhero.ui.fragment.base.BaseFragment
 import com.lemon.team.superhero.ui.fragment.base.BasePresenter
-import com.lemon.team.superhero.util.goToFragment
+import com.lemon.team.superhero.util.goToFragmentWithTransition
 import com.lemon.team.superhero.util.onClickSearch
 
 class HomeFragment:BaseFragment<FragmentHomeBinding,HomePresenter>() {
@@ -19,8 +20,9 @@ class HomeFragment:BaseFragment<FragmentHomeBinding,HomePresenter>() {
 
     override fun callbacks() {
         binding?.searchField?.onClickSearch {
-            binding?.searchField?.goToFragment(
-                HomeFragmentDirections.actionHomeFragmentToSearchFragment(it)
+            binding?.searchField?.goToFragmentWithTransition(
+                HomeFragmentDirections.actionHomeFragmentToSearchFragment(it),
+                FragmentNavigatorExtras(binding!!.searchField to "search")
             )
         }
     }
