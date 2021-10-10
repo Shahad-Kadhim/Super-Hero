@@ -9,14 +9,30 @@
     tools:layout_editor_absoluteX="302dp"
     tools:layout_editor_absoluteY="-16dp">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/back_btn"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_margin="8dp"
+        android:text="Back"
+        android:textColor="@color/black"
+        android:paddingHorizontal="16dp"
+        android:backgroundTint="@color/green"
+        android:background="@drawable/rounded"
+        android:textAllCaps="false"
+        android:drawableTint="@color/black"
+        android:drawableStart="@drawable/ic_previous"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        tools:background="@drawable/img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/img" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

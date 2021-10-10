@@ -3,6 +3,7 @@ package com.lemon.team.superhero.ui.fragment.details
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -30,7 +31,9 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
 
 
     override fun callbacks() {
-
+        binding.backBtn.setOnClickListener {view ->
+            view.findNavController().popBackStack()
+        }
     }
 
 
