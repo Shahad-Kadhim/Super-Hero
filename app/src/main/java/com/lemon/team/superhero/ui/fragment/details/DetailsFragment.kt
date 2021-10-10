@@ -1,5 +1,6 @@
 package com.lemon.team.superhero.ui.fragment.details
 
+import android.transition.TransitionInflater
 import android.util.Log
 import android.view.LayoutInflater
 import androidx.navigation.fragment.navArgs
@@ -23,11 +24,17 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding,DetailsPresenter>(),
     override val getPresenter: BasePresenter =DetailsPresenter(this)
 
     override fun setUp() {
+        setupTransition()
         presenter?.apply {
             getSuperHeroInfo(args.superHeroId)
         }
     }
 
+    private fun setupTransition() {
+        binding?.image?.transitionName=args.superHeroId
+        Log.i("TRANSTION NAME  detail>>>>>>",binding?.image?.transitionName.toString())
+        sharedElementEnterTransition= TransitionInflater.from(activity).inflateTransition(android.R.transition.move)
+    }
 
     override fun callbacks() {
 

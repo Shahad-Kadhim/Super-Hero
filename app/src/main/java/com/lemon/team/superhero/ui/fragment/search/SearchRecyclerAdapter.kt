@@ -1,5 +1,6 @@
 package com.lemon.team.superhero.ui.fragment.search
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ class SearchRecyclerAdapter(items:List<SuperHeroInfoResponse>, listener: SuperHe
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         if(holder is ItemViewHolder){
-            bindItem( getItems()[position] , holder )
+            bindItem(holder, getItems()[position] )
         }
     }
 
@@ -31,14 +32,16 @@ class SearchRecyclerAdapter(items:List<SuperHeroInfoResponse>, listener: SuperHe
         val binding=ItemSearchOfSuperHeroBinding.bind(view)
     }
 
-    private fun bindItem(superHero:SuperHeroInfoResponse,holder:ItemViewHolder){
+    private fun bindItem(holder:ItemViewHolder,superHero:SuperHeroInfoResponse){
         holder.binding.apply {
             characterName.text=superHero.name
             actor.text=superHero.biography?.fullName
             Glide.with(image).load(superHero.image?.url).centerCrop().into(image)
+            image.transitionName=superHero.id
+            Log.i("TRANSTION NAME >>>>>>",image.transitionName)
             root.setOnClickListener {
                 superHero.id?.let { id ->
-                    listener.onClickItem(id)
+                    listener.onClickItem(id,image)
                 }
             }
         }

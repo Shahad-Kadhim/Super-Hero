@@ -3,7 +3,9 @@ package com.lemon.team.superhero.ui.fragment.search
 import android.transition.TransitionInflater
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.ImageView
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.navArgs
 import com.lemon.team.superhero.databinding.FragmentSearchBinding
 import com.lemon.team.superhero.model.reponse.SuperHeroSearchResultResponse
@@ -88,8 +90,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding,SearchPresenter>(),Sea
         }
     }
 
-    override fun onClickItem(superHeroId: String) {
-        binding?.root?.goToFragment(SearchFragmentDirections.actionSearchFragmentToDetailsFragment(superHeroId))
+    override fun onClickItem(superHeroId: String,image:ImageView) {
+        Log.i("TRANSTION NAME  on click>>>>>>",image.transitionName)
+        binding?.root?.goToFragmentWithTransition(
+            SearchFragmentDirections.actionSearchFragmentToDetailsFragment(superHeroId),
+            FragmentNavigatorExtras(image to image.transitionName)
+        )
     }
 
 }

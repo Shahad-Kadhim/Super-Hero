@@ -37,7 +37,7 @@ class HomeRecyclerAdapter(items:List<SuperHeroInfoResponse>,  listener: SuperHer
             Glide.with(image).load(superHero.image?.url).into(image)
             root.setOnClickListener {
                 superHero.id?.let { id ->
-                    listener.onClickItem(id)
+                    listener.onClickItem(id,image)
                 }
             }
         }
